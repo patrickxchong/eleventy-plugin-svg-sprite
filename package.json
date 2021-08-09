@@ -1,0 +1,38 @@
+{
+  "name": "eleventy-plugin-svg-sprite",
+  "version": "1.0.6",
+  "description": "A high performance Eleventy universal plugin that compiles a directory of SVG files into a single SVG Sprite and adds shortcodes to embed SVG Sprite and SVG content in Eleventy templates.",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": ".eleventy.js",
+  "scripts": {
+    "demo": "cd demo/; npx @11ty/eleventy",
+    "start": "cd demo/; npx @11ty/eleventy --serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patrickxchong/eleventy-plugin-svg-sprite.git"
+  },
+  "funding": "https://ko-fi.com/patrickxchong",
+  "keywords": [
+    "eleventy",
+    "eleventy-plugin"
+  ],
+  "author": {
+    "name": "Patrick Chong",
+    "email": "mail@patrickxchong.com",
+    "url": "https://www.patrickxchong.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/patrickxchong/eleventy-plugin-svg-sprite/issues"
+  },
+  "homepage": "https://github.com/patrickxchong/eleventy-plugin-svg-sprite/",
+  "peerDependencies": {
+    "@11ty/eleventy": ">=0.5.4"
+  },
+  "dependencies": {
+    "svg-sprite": "^1.5.1"
+  }
+}
