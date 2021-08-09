@@ -104,3 +104,7 @@ You can add custom classes to the SVG with the following syntax.
 - https://github.com/11ta/11ta-template for SVG compilation code and SVG shortcode
 - https://github.com/11ty/eleventy-plugin-syntaxhighlight and https://github.com/5t3ph/eleventy-plugin-template for Eleventy plugin structure
 - [@daviddarnes](https://github.com/daviddarnes) for the suggestion of wrapping this code into a plugin
+
+
+## Support this project
+[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/patrickxchong)
