@@ -37,7 +37,7 @@ module.exports = function (eleventyConfig) {
 
 ## Usage
 
-If you want to jump right into the code, you can refer to the [demo]("./demo") folder.
+If you want to jump right into the code, you can refer to the [demo]("https://github.com/patrickxchong/eleventy-plugin-svg-sprite/tree/main/demo") folder.
 
 ### Including the SVG Sprite
 
