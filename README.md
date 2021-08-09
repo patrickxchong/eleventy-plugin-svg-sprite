@@ -62,7 +62,7 @@ Which will render the following:
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"
   >
-    ...(svg content)...
+    ...(compiled svg sprite)...
   </svg>
 </div>
 ```
@@ -84,6 +84,14 @@ Note: make sure you have [included the SVG Sprite](#including-the-svg-sprite).
 ${this.svg("demo")}
 ```
 
+Which will render the following:
+
+```html
+<svg class="fill-current">
+  ...(SVG content for demo.svg that references SVG Sprite above)...
+</svg>
+```
+
 ### Adding a class to your SVG
 
 You can add custom classes to the SVG with the following syntax.
@@ -99,12 +107,20 @@ You can add custom classes to the SVG with the following syntax.
 `${this.svg("demo", "custom-class")}`
 ```
 
+Which will render the following:
+
+```html
+<svg class="custom-class fill-current">
+  ...(SVG content for demo.svg that references SVG Sprite above)...
+</svg>
+```
+
 ## Credits
 
 - https://github.com/11ta/11ta-template for SVG compilation code and SVG shortcode
 - https://github.com/11ty/eleventy-plugin-syntaxhighlight and https://github.com/5t3ph/eleventy-plugin-template for Eleventy plugin structure
 - [@daviddarnes](https://github.com/daviddarnes) for the suggestion of wrapping this code into a plugin
 
-
 ## Support this project
+
 [![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/patrickxchong)
