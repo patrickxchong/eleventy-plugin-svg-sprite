@@ -1,6 +1,6 @@
 {
   "name": "eleventy-plugin-svg-sprite",
-  "version": "1.0.8",
+  "version": "1.1.0",
   "description": "A high performance Eleventy universal plugin that compiles a directory of SVG files into a single SVG Sprite and adds shortcodes to embed SVG Sprite and SVG content in Eleventy templates.",
   "publishConfig": {
     "access": "public"
