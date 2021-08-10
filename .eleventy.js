@@ -21,7 +21,7 @@ module.exports = (eleventyConfig, options = {}) => {
       throw new Error("[eleventy-plugin-svg-sprite] name of SVG must be specified");
     }
     const nameAttr = name;
-    const classesAttr = `${classes || config.defaultClasses} fill-current`;
+    const classesAttr = `${config.globalClasses} ${classes || config.defaultClasses}`;
     const descAttr = desc || `${nameAttr} icon`;
     const locationAttr = location || 'content';
 

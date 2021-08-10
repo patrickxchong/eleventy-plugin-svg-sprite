@@ -21,19 +21,21 @@ const svgSprite = require("eleventy-plugin-svg-sprite");
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(svgSprite, {
-    path: "./src/assets/svg", // relative path to SVG directory (MUST be defined when initialising plugin)
+    path: "./src/assets/svg", // relative path to SVG directory
+    // (MUST be defined when initialising plugin)
   });
 };
 ```
 
 ## Config Options
 
-| Option         | Type   | Default                              | Description                                                                                            |
-| -------------- | ------ | ------------------------------------ | ------------------------------------------------------------------------------------------------------ |
-| path           | String | undefined                            |
-| defaultClasses | String | (empty string)                       |
-| shortcode      | String | svg                                  | Customisable shortcode used to embed SVG content (see [Embedding SVG Content](#embedding-svg-content)) |
-| spriteConfig   | Object | (see [options.js](./src/options.js)) | Options you want to pass to [svg-sprite](https://github.com/svg-sprite/svg-sprite)                     |
+| Option         | Type              | Default                              | Description                                                                                                       |
+| -------------- | ----------------- | ------------------------------------ | ----------------------------------------------------------------------------------------------------------------- |
+| path           | String (required) | undefined                            | relative path to svg directory                                                                                    |
+| globalClasses  | String            | (empty string)                       | global classes for embedded SVGs (will not be overridden by [custom classes](#adding-custom-classes-to-your-svg)) |
+| defaultClasses | String            | (empty string)                       | default classes for embedded SVGs (overridden by [custom classes](#adding-custom-classes-to-your-svg))            |
+| shortcode      | String            | svg                                  | Customisable shortcode used to embed SVG content (see [Embedding SVG Content](#embedding-svg-content))            |
+| spriteConfig   | Object            | (see [options.js](./src/options.js)) | Options you want to pass to [svg-sprite](https://github.com/svg-sprite/svg-sprite)                                |
 
 ## Usage
 
@@ -69,7 +71,7 @@ Which will render the following:
 
 ### Embedding SVG Content
 
-Assuming that the plugin's "shortcode" option is the default `svg` shortcode, use the following syntax to embed an SVG file at the defined path (eg. "./src/assets/svg/demo.svg").
+Assuming that the plugin's `shortcode` option is the default `svg` shortcode, use the following syntax to embed an SVG file at the defined path (eg. "./src/assets/svg/demo.svg").
 
 Note: make sure you have [included the SVG Sprite](#including-the-svg-sprite).
 
@@ -84,17 +86,17 @@ Note: make sure you have [included the SVG Sprite](#including-the-svg-sprite).
 ${this.svg("demo")}
 ```
 
-Which will render the following:
+Which will render the following (assuming that `globalClasses: "svgicon", defaultClasses: "default-class"` when the plugin is initialised):
 
 ```html
-<svg class="fill-current">
+<svg class="svgicon default-class">
   ...(SVG content for demo.svg that references SVG Sprite above)...
 </svg>
 ```
 
-### Adding a class to your SVG
+### Adding custom classes to your SVG
 
-You can add custom classes to the SVG with the following syntax.
+Adding custom classes will override classes defined in `defaultClasses`, but classes defined in `globalClasses` will remain.
 
 ```html
 <!-- Nunjucks/Liquid  -->
@@ -107,10 +109,10 @@ You can add custom classes to the SVG with the following syntax.
 `${this.svg("demo", "custom-class")}`
 ```
 
-Which will render the following:
+Which will render the following (assuming that `globalClasses: "svgicon", defaultClasses: "default-class"` when the plugin is initialised):
 
 ```html
-<svg class="custom-class fill-current">
+<svg class="svgicon custom-class">
   ...(SVG content for demo.svg that references SVG Sprite above)...
 </svg>
 ```
@@ -118,7 +120,7 @@ Which will render the following:
 ## Credits
 
 - https://github.com/11ta/11ta-template for SVG compilation code and SVG shortcode
-- https://github.com/11ty/eleventy-plugin-syntaxhighlight and https://github.com/5t3ph/eleventy-plugin-template for Eleventy plugin structure
+- https://github.com/11ty/eleventy-plugin-syntaxhighlight, https://github.com/brob/eleventy-plugin-svg-contents and https://github.com/5t3ph/eleventy-plugin-template for Eleventy plugin structure
 - [@daviddarnes](https://github.com/daviddarnes) for the suggestion of wrapping this code into a plugin
 
 ## Support this project
