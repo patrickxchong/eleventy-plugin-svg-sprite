@@ -11,9 +11,10 @@ module.exports = (eleventyConfig, options = {}) => {
 
   let svgSpriteInstance = new SVGSprite(config);
   eleventyConfig.on('beforeBuild', async () => { await svgSpriteInstance.compile(config); });
-  eleventyConfig.addShortcode('svgsprite', svgSpriteInstance.getSvgSprite);
 
-  eleventyConfig.addShortcode(config.shortcode, (name, classes, desc, location) => {
+  eleventyConfig.addShortcode(config.svgSpriteShortcode, svgSpriteInstance.getSvgSprite);
+
+  eleventyConfig.addShortcode(config.svgShortcode, (name, classes, desc, location) => {
     // "desc" and "location" attributes are required for accessibility and 
     // Lighthouse validations and are hardcoded in the layouts to provide 
     // unique values as required by Lighthouse.

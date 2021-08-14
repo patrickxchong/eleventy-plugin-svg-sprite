@@ -29,13 +29,14 @@ module.exports = function (eleventyConfig) {
 
 ## Config Options
 
-| Option         | Type              | Default                              | Description                                                                                                       |
-| -------------- | ----------------- | ------------------------------------ | ----------------------------------------------------------------------------------------------------------------- |
-| path           | String (required) | undefined                            | relative path to svg directory                                                                                    |
-| globalClasses  | String            | (empty string)                       | global classes for embedded SVGs (will not be overridden by [custom classes](#adding-custom-classes-to-your-svg)) |
-| defaultClasses | String            | (empty string)                       | default classes for embedded SVGs (overridden by [custom classes](#adding-custom-classes-to-your-svg))            |
-| shortcode      | String            | svg                                  | Customisable shortcode used to embed SVG content (see [Embedding SVG Content](#embedding-svg-content))            |
-| spriteConfig   | Object            | (see [options.js](./src/options.js)) | Options you want to pass to [svg-sprite](https://github.com/svg-sprite/svg-sprite)                                |
+| Option             | Type              | Default                              | Description                                                                                                       |
+| ------------------ | ----------------- | ------------------------------------ | ----------------------------------------------------------------------------------------------------------------- |
+| path               | String (required) | undefined                            | relative path to svg directory                                                                                    |
+| spriteConfig       | Object            | (see [options.js](./src/options.js)) | Options you want to pass to [svg-sprite](https://github.com/svg-sprite/svg-sprite)                                |
+| globalClasses      | String            | (empty string)                       | global classes for embedded SVGs (will not be overridden by [custom classes](#adding-custom-classes-to-your-svg)) |
+| defaultClasses     | String            | (empty string)                       | default classes for embedded SVGs (overridden by [custom classes](#adding-custom-classes-to-your-svg))            |
+| svgSpriteShortcode | String            | svgsprite                            | Customise shortcode used to embed SVG sprite (see [Including the SVG Sprite](#including-the-svg-sprite))          |
+| svgShortcode       | String            | svg                                  | Customise shortcode used to embed SVG content (see [Embedding SVG Content](#embedding-svg-content))               |
 
 ## Usage
 
@@ -43,7 +44,7 @@ If you want to jump right into the code, you can refer to the [demo](./demo) fol
 
 ### Including the SVG Sprite
 
-In your base template (Nunjucks, Liquid, Handlebars, or 11ty.js), use the following syntax to include the `svgsprite` [shortcode](https://www.11ty.dev/docs/shortcodes/) for the compiled SVG sprite :
+Assuming that the plugin's `svgSpriteShortcode` is `svgsprite` (default), use the following syntax to include the compiled SVG sprite:
 
 ```html
 <!-- Nunjucks/Liquid  -->
@@ -71,7 +72,7 @@ Which will render the following:
 
 ### Embedding SVG Content
 
-Assuming that the plugin's `shortcode` option is the default `svg` shortcode, use the following syntax to embed an SVG file at the defined path (eg. "./src/assets/svg/demo.svg").
+Assuming that the plugin's `svgShortcode` is `svg` (default), use the following syntax to embed an SVG file at the defined path (eg. `"./src/assets/svg/demo.svg"` when `path` is `"./src/assets/svg"`).
 
 Note: make sure you have [included the SVG Sprite](#including-the-svg-sprite).
 

@@ -2,7 +2,8 @@ module.exports = {
   path: "",
   globalClasses: "",
   defaultClasses: "",
-  shortcode: "svg",
+  svgSpriteShortcode: "svgsprite",
+  svgShortcode: "svg",
   spriteConfig:
   {
     mode: {
