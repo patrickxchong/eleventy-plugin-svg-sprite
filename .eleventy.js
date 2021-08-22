@@ -28,7 +28,7 @@ module.exports = (eleventyConfig, options = {}) => {
 
     return `<svg class="${classesAttr}" aria-describedby="symbol-${nameAttr}-desc" aria-labelledby="symbol-${nameAttr}-desc" role="group">
                 <desc id="symbol-${nameAttr}-desc-${locationAttr}">${descAttr}</desc>
-                <use xlink:href="#symbol-${nameAttr}"></use>
+                <use xlink:href="#svg-${nameAttr}"></use>
             </svg>`;
   });
 };

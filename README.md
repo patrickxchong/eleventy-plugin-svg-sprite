@@ -118,6 +118,16 @@ Which will render the following (assuming that `globalClasses: "svgicon", defaul
 </svg>
 ```
 
+### Using your own shortcode to render SVGs
+
+You can write your own SVG shortcode if you prefer. To make sure the SVG is referenced correctly, you can use the snippet below to start. `#svg-` is the prefix created by svg-sprite and `name` would be the filename of the SVG without the `.svg` extension.
+
+```js
+eleventyConfig.addShortcode("icon", function (name) {
+  return `<svg><use xlink:href="#svg-${name}"></use></svg>`;
+});
+```
+
 ## Credits
 
 - https://github.com/11ta/11ta-template for SVG compilation code and SVG shortcode

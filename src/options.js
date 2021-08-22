@@ -16,7 +16,7 @@ module.exports = {
     shape: {
       transform: ['svgo'],
       id: {
-        generator: 'symbol-%s',
+        generator: 'svg-%s',
       },
     },
     svg: {
