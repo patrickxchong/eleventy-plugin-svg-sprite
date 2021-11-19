@@ -56,7 +56,7 @@ class SVGSprite {
 
     // cache spriteContent as global variable as getSvgSprite below is called in 
     // the function scope of the page instead of the SVGSprite class)
-    spriteContent = `<div hidden>${sprite.contents.toString('utf8')}</div>`;
+    spriteContent = `<div style="width: 0; height: 0;">${sprite.contents.toString('utf8')}</div>`;
     // fs.utimes('.', new Date(), new Date(), () => { });
   };
 
