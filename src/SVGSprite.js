@@ -18,6 +18,9 @@ class SVGSprite {
     const getFiles = util.promisify(glob);
     const files = await getFiles('**/*.svg', { cwd: this.cwd });
     const newCacheKey = files.map(file => `${file}:${fs.statSync(path.join(this.cwd, file)).mtimeMs}`).join("|");
+    // Note: Replace custom file watching with chokidar if there are bugs/limitations.
+    // https://github.com/paulmillr/chokidar
+    // https://stackoverflow.com/a/13705878
 
     if (spriteContent && newCacheKey === cacheKey) {
       return spriteContent;
