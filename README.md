@@ -12,6 +12,8 @@ Available on [npm](https://www.npmjs.com/package/eleventy-plugin-svg-sprite).
 npm install eleventy-plugin-svg-sprite --save-dev
 # OR
 yarn add eleventy-plugin-svg-sprite --dev
+# OR
+pnpm add -D eleventy-plugin-svg-sprite
 ```
 
 Open up your Eleventy config file (probably `.eleventy.js`) and add the plugin:
@@ -29,14 +31,15 @@ module.exports = function (eleventyConfig) {
 
 ## Config Options
 
-| Option             | Type              | Default                              | Description                                                                                                       |
-| ------------------ | ----------------- | ------------------------------------ | ----------------------------------------------------------------------------------------------------------------- |
-| path               | String (required) | undefined                            | relative path to svg directory                                                                                    |
-| spriteConfig       | Object            | (see [options.js](./src/options.js)) | Options you want to pass to [svg-sprite](https://github.com/svg-sprite/svg-sprite)                                |
-| globalClasses      | String            | (empty string)                       | global classes for embedded SVGs (will not be overridden by [custom classes](#adding-custom-classes-to-your-svg)) |
-| defaultClasses     | String            | (empty string)                       | default classes for embedded SVGs (overridden by [custom classes](#adding-custom-classes-to-your-svg))            |
-| svgSpriteShortcode | String            | svgsprite                            | Customise shortcode used to embed SVG sprite (see [Including the SVG Sprite](#including-the-svg-sprite))          |
-| svgShortcode       | String            | svg                                  | Customise shortcode used to embed SVG content (see [Embedding SVG Content](#embedding-svg-content))               |
+| Option               | Type              | Default                              | Description                                                                                                                              |
+| -------------------- | ----------------- | ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `path`               | String (required) | undefined                            | relative path to svg directory                                                                                                           |
+| `spriteConfig`       | Object            | (see [options.js](./src/options.js)) | Options you want to pass to [svg-sprite](https://github.com/svg-sprite/svg-sprite)                                                       |
+| `spriteWrap`         | Object or `false` | `{ height: '0', width: '0' }`        | Optional element wrapper applied to the generated SVG sprite. Pass boolean `false` to disable. (see [sprite wrapping](#sprite-wrapping)) |
+| `globalClasses`      | String            | (empty string)                       | global classes for embedded SVGs (will not be overridden by [custom classes](#adding-custom-classes-to-your-svg))                        |
+| `defaultClasses`     | String            | (empty string)                       | default classes for embedded SVGs (overridden by [custom classes](#adding-custom-classes-to-your-svg))                                   |
+| `svgSpriteShortcode` | String            | svgsprite                            | Customise shortcode used to embed SVG sprite (see [Including the SVG Sprite](#including-the-svg-sprite))                                 |
+| `svgShortcode`       | String            | svg                                  | Customise shortcode used to embed SVG content (see [Embedding SVG Content](#embedding-svg-content))                                      |
 
 ## Usage
 
@@ -126,6 +129,32 @@ You can write your own SVG shortcode if you prefer. To make sure the SVG is refe
 eleventyConfig.addShortcode("icon", function (name) {
   return `<svg><use xlink:href="#svg-${name}"></use></svg>`;
 });
+```
+
+### Sprite Wrapping
+
+By default the generate SVG Sprite will be wrapped within a `<div style="width:0; height:0;"></div>` element. You can optionally override the defaults and apply your own custom inline styles to be applied.
+
+```js
+eleventyConfig.addPlugin(svgSprite, {
+  path: "./src/assets/svg", // relative path to SVG directory
+  spriteWrap: {
+    display: "none", // use display none
+  },
+});
+
+// => <div style="display:none;"><svg></svg></div>
+```
+
+If you do not wish to have the generated sprite wrapped then pass a boolean `false` value to `spriteWrap`
+
+```js
+eleventyConfig.addPlugin(svgSprite, {
+  path: "./src/assets/svg", // relative path to SVG directory
+  spriteWrap: false,
+});
+
+// => <svg></svg>
 ```
 
 ## Credits
