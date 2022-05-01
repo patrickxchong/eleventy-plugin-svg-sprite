@@ -5,6 +5,7 @@
   "publishConfig": {
     "access": "public"
   },
+  "types": "index.d.ts",
   "main": ".eleventy.js",
   "scripts": {
     "demo": "cd demo/; npx @11ty/eleventy",
