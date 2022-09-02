@@ -27,6 +27,26 @@ module.exports = function (eleventyConfig) {
 };
 ```
 
+If you would like to compile more than 1 svgsprite, pass an array of config objects with unique `svgSpriteShortcode` **(important)**:
+
+```js
+const svgSprite = require("eleventy-plugin-svg-sprite");
+
+module.exports = function (eleventyConfig) {
+  eleventyConfig.addPlugin(svgSprite, [
+    {
+      path: "./src/assets/svg_1", // relative path to SVG directory
+      svgSpriteShortcode: "svgsprite1",
+    },
+    {
+      path: "./src/assets/svg_2", // relative path to SVG directory
+      svgSpriteShortcode: "svgsprite2",
+    }
+  ]);
+};
+```
+Refer to [demo/array_config/.eleventy.js](./demo/array_config/.eleventy.js) for a sample.
+
 ## Config Options
 
 | Option             | Type              | Default                              | Description                                                                                                       |
