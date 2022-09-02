@@ -6,10 +6,6 @@
     "access": "public"
   },
   "main": ".eleventy.js",
-  "scripts": {
-    "demo": "cd demo/; npx @11ty/eleventy",
-    "start": "cd demo/; npx @11ty/eleventy --serve"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/patrickxchong/eleventy-plugin-svg-sprite.git"

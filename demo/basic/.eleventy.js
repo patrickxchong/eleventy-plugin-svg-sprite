@@ -1,4 +1,4 @@
-const svgSprite = require("../.eleventy.js");
+const svgSprite = require("eleventy-plugin-svg-sprite");
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(svgSprite, {

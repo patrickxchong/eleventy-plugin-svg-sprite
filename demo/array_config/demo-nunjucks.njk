@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+  </head>
+  <body>
+  {% svgspriteGeneral %}
+  {% svgspriteHome %}
+  {% svgspriteProfile %}
+
+  {% svg "placeholder-feature" %}
+  {% svgHome "placeholder-slider" %} <!-- this works -->
+  {% svg "placeholder-slider" %} <!-- this works too -->
+  {% svg "placeholder-thumb", "custom-class-1 custom-class-2" %}
+  </body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "name": "eleventy-plugin-svg-sprite-example-basic",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "eleventy --serve",
+    "build": "eleventy"
+  },
+  "author": {
+    "name": "Patrick Chong",
+    "email": "mail@patrickxchong.com",
+    "url": "https://www.patrickxchong.com"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@11ty/eleventy": "^0.11.0",
+    "eleventy-plugin-svg-sprite": "link:../../"
+  }
+}
