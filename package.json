@@ -29,6 +29,6 @@
     "@11ty/eleventy": ">=0.5.4"
   },
   "dependencies": {
-    "svg-sprite": "^1.5.1"
+    "svg-sprite": "2.0.0"
   }
 }
