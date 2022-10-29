@@ -138,9 +138,27 @@ Which will render the following (assuming that `globalClasses: "svgicon", defaul
 </svg>
 ```
 
+### SVG id naming convention
+```
+📂assets
+ ┣ 📂svg
+   ┣ 📜 item.svg
+   ┣ 📂 sub_dir_1
+   ┃ ┗ 📜 item-1.svg
+   ┗ 📂 sub_dir_2
+     ┗ 📂 sub_sub_dir_2
+       ┗ 📜 example item 2.svg
+ ```
+For a directory structure as above, the respective SVG ids generated are as follows:
+```js
+svg "item" // no subdirectory prefix
+svg "sub_dir_1--item-1" // one level subdirectory with '--' prefix
+svg "sub_dir_2--sub_sub_dir_2--example_item_2" // two level subdirectory with '--' prefix, also convert spaces into '_'
+```
+
 ### Using your own shortcode to render SVGs
 
-You can write your own SVG shortcode if you prefer. To make sure the SVG is referenced correctly, you can use the snippet below to start. `#svg-` is the prefix created by svg-sprite and `name` would be the filename of the SVG without the `.svg` extension.
+You can write your own SVG shortcode if you prefer. To make sure the SVG is referenced correctly, you can use the snippet below to start. `#svg-` is the prefix created by svg-sprite and `name` would be the filename of the SVG without the `.svg` extension (also refer to [SVG id naming convention](#svg-id-naming-convention) for edge cases and other uses).
 
 ```js
 eleventyConfig.addShortcode("icon", function (name) {
