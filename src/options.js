@@ -1,3 +1,6 @@
+const path = require("path") 
+const util = require("util") 
+
 module.exports = {
   path: "",
   globalClasses: "",
@@ -16,7 +19,13 @@ module.exports = {
     shape: {
       transform: ['svgo'],
       id: {
-        generator: 'svg-%s',
+        generator: (_, file) => {
+          const path_separator = '--'
+          const whitespace_separator = '_'
+          const template = 'svg-%s'
+          const pathname = file["relative"].split(path.sep).join(path_separator)
+          return util.format(template, path.basename(pathname.replace(/\s+/g, whitespace_separator), '.svg'));
+        }
       },
     },
     svg: {
