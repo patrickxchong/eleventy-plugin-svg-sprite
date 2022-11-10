@@ -41,22 +41,24 @@ module.exports = function (eleventyConfig) {
     {
       path: "./src/assets/svg_2", // relative path to SVG directory
       svgSpriteShortcode: "svgsprite2",
-    }
+    },
   ]);
 };
 ```
+
 Refer to [demo/array_config/.eleventy.js](./demo/array_config/.eleventy.js) for a sample.
 
 ## Config Options
 
-| Option             | Type              | Default                              | Description                                                                                                       |
-| ------------------ | ----------------- | ------------------------------------ | ----------------------------------------------------------------------------------------------------------------- |
-| path               | String (required) | undefined                            | relative path to svg directory                                                                                    |
-| spriteConfig       | Object            | (see [options.js](./src/options.js)) | Options you want to pass to [svg-sprite](https://github.com/svg-sprite/svg-sprite)                                |
-| globalClasses      | String            | (empty string)                       | global classes for embedded SVGs (will not be overridden by [custom classes](#adding-custom-classes-to-your-svg)) |
-| defaultClasses     | String            | (empty string)                       | default classes for embedded SVGs (overridden by [custom classes](#adding-custom-classes-to-your-svg))            |
-| svgSpriteShortcode | String            | svgsprite                            | Customise shortcode used to embed SVG sprite (see [Including the SVG Sprite](#including-the-svg-sprite))          |
-| svgShortcode       | String            | svg                                  | Customise shortcode used to embed SVG content (see [Embedding SVG Content](#embedding-svg-content))               |
+| Option             | Type              | Default                              | Description                                                                                                                           |
+| ------------------ | ----------------- | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------- |
+| path               | String (required) | undefined                            | relative path to svg directory                                                                                                        |
+| spriteConfig       | Object            | (see [options.js](./src/options.js)) | Options you want to pass to [svg-sprite](https://github.com/svg-sprite/svg-sprite)                                                    |
+| globalClasses      | String            | (empty string)                       | global classes for embedded SVGs (will not be overridden by [custom classes](#adding-custom-classes-to-your-svg))                     |
+| defaultClasses     | String            | (empty string)                       | default classes for embedded SVGs (overridden by [custom classes](#adding-custom-classes-to-your-svg))                                |
+| svgSpriteShortcode | String            | svgsprite                            | Customise shortcode used to embed SVG sprite (see [Including the SVG Sprite](#including-the-svg-sprite))                              |
+| svgShortcode       | String            | svg                                  | Customise shortcode used to embed SVG content (see [Embedding SVG Content](#embedding-svg-content))                                   |
+| outputFilepath     | String            | (empty string)                       | Filepath to write compiled spritesheet to (see [Exporting compiled spritesheet as a file](#exporting-compiled-spritesheet-as-a-file)). No file is created if `outputFilepath` is empty. |
 
 ## Usage
 
@@ -139,6 +141,7 @@ Which will render the following (assuming that `globalClasses: "svgicon", defaul
 ```
 
 ### SVG id naming convention
+
 ```
 📂assets
  ┣ 📂svg
@@ -148,8 +151,10 @@ Which will render the following (assuming that `globalClasses: "svgicon", defaul
    ┗ 📂 sub_dir_2
      ┗ 📂 sub_sub_dir_2
        ┗ 📜 example item 2.svg
- ```
+```
+
 For a directory structure as above, the respective SVG ids generated are as follows:
+
 ```js
 svg "item" // no subdirectory prefix
 svg "sub_dir_1--item-1" // one level subdirectory with '--' prefix
@@ -165,6 +170,19 @@ eleventyConfig.addShortcode("icon", function (name) {
   return `<svg><use xlink:href="#svg-${name}"></use></svg>`;
 });
 ```
+
+### Exporting compiled spritesheet as a file
+
+If you prefer to host the compiled spritesheet as a file/on a CDN instead of embedding the spritesheet in the template, you can specify `outputFilepath` in the config, which would write to the location of the path (be careful as it will overwrite any file that pre-exists at that path). 
+
+As an example, if `outputPath` is set to `"./_site/sprites/icons.svg"`, you can reference a file named `placeholder-feature.svg`with the following html snippet. (note the `svg-` prefix)
+```html
+<svg>
+  <use xlink:href="/sprites/icons.svg#svg-placeholder-feature"></use>
+</svg>
+```
+
+Refer to [demo/file_output/.eleventy.js](./demo/array_config/.eleventy.js) for an example.
 
 ## Credits
 
