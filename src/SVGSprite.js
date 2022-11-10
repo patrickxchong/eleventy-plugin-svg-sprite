@@ -1,4 +1,5 @@
 const fs = require('fs');
+const fsUtils = require('./fs-utils');
 const path = require('path');
 const util = require('util');
 const glob = require('glob');
@@ -9,11 +10,15 @@ let spriteCache = {};
 
 class SVGSprite {
   constructor(config) {
+    this.config = config;
     this.cwd = path.resolve(config.path);
+    if (config.outputFilepath) {
+      this.outputFilepath = path.resolve(config.outputFilepath);
+    }
     this.spriteConfig = config.spriteConfig;
     this.svgSpriteShortcode = config.svgSpriteShortcode;
   }
-  
+
   async compile() {
     // Get all SVG files in working directory
     const getFiles = util.promisify(glob);
@@ -64,6 +69,11 @@ class SVGSprite {
 
     // Compile the sprite file and return it as a string
     const sprite = await compileSprite(this.spriteConfig.mode);
+
+    if (this.outputFilepath) {
+      console.info(`[eleventy-plugin-svg-sprite] Writing ${this.config.outputFilepath} from ${this.config.path}`);
+      await fsUtils.writeFile(this.outputFilepath, sprite.contents.toString('utf8'));
+    }
 
     // cache spriteContent into global spriteCache variable
     spriteCache[this.svgSpriteShortcode].spriteContent = `<div style="width: 0; height: 0;">${sprite.contents.toString('utf8')}</div>`;

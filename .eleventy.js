@@ -6,7 +6,7 @@ module.exports = (eleventyConfig, pluginConfig = [{}]) => {
     pluginConfig = [pluginConfig];
   }
 
-  svgSpriteShortcodeList = []
+  svgSpriteShortcodeList = [];
 
   for (options of pluginConfig) {
     if (!options.path) {
@@ -17,12 +17,12 @@ module.exports = (eleventyConfig, pluginConfig = [{}]) => {
     let config = Object.assign(defaultOptions, options);
 
     if (svgSpriteShortcodeList.includes(config.svgSpriteShortcode)) {
-      throw new Error("[eleventy-plugin-svg-sprite] illegal to have duplicate svgSpriteShortcode in config list")
+      throw new Error("[eleventy-plugin-svg-sprite] illegal to have duplicate svgSpriteShortcode in config list");
     }
-    svgSpriteShortcodeList.push(config.svgSpriteShortcode)
+    svgSpriteShortcodeList.push(config.svgSpriteShortcode);
 
     let svgSpriteInstance = new SVGSprite(config);
-    eleventyConfig.on('beforeBuild', async () => { await svgSpriteInstance.compile(config); });
+    eleventyConfig.on('beforeBuild', async () => { await svgSpriteInstance.compile(); });
 
     eleventyConfig.addShortcode(config.svgSpriteShortcode, () => { return svgSpriteInstance.getSvgSprite(config.svgSpriteShortcode); });
 
