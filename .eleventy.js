@@ -1,5 +1,6 @@
-const path = require('path');
 const SVGSprite = require("./src/SVGSprite");
+
+let idCounter = 0;
 
 module.exports = (eleventyConfig, pluginConfig = [{}]) => {
   if (!Array.isArray(pluginConfig)) {
@@ -26,20 +27,19 @@ module.exports = (eleventyConfig, pluginConfig = [{}]) => {
 
     eleventyConfig.addShortcode(config.svgSpriteShortcode, () => { return svgSpriteInstance.getSvgSprite(config.svgSpriteShortcode); });
 
-    eleventyConfig.addShortcode(config.svgShortcode, (name, classes, desc, location) => {
-      // "desc" and "location" attributes are required for accessibility and 
-      // Lighthouse validations and are hardcoded in the layouts to provide 
-      // unique values as required by Lighthouse.
+    eleventyConfig.addShortcode(config.svgShortcode, (name, classes, desc) => {
       if (!name) {
         throw new Error("[eleventy-plugin-svg-sprite] name of SVG must be specified");
       }
       const nameAttr = name;
       const classesAttr = `${config.globalClasses} ${classes || config.defaultClasses}`;
+      // "desc" is required for accessibility and Lighthouse validations
       const descAttr = desc || `${nameAttr} icon`;
-      const locationAttr = location || 'content';
+      // a unique id is generated so that the svg references the correct description in aria-labelledby
+      const uniqueID = (idCounter++).toString(36);
 
-      return `<svg class="${classesAttr}" aria-describedby="symbol-${nameAttr}-desc" aria-labelledby="symbol-${nameAttr}-desc" role="group">
-                  <desc id="symbol-${nameAttr}-desc-${locationAttr}">${descAttr}</desc>
+      return `<svg class="${classesAttr}" aria-labelledby="symbol-${nameAttr}-desc-${uniqueID}" role="group">
+                  <desc id="symbol-${nameAttr}-desc-${uniqueID}">${descAttr}</desc>
                   <use xlink:href="#svg-${nameAttr}"></use>
               </svg>`;
     });
