@@ -1,4 +1,5 @@
 const SVGSprite = require("./src/SVGSprite");
+const lodash = require('lodash'); 
 
 let idCounter = 0;
 
@@ -15,7 +16,11 @@ module.exports = (eleventyConfig, pluginConfig = [{}]) => {
     }
 
     let defaultOptions = require("./src/options");
-    let config = Object.assign(defaultOptions, options);
+    let config = lodash.merge(defaultOptions, options);
+
+    // Debug statement to log config after merge
+    // const util = require('util')
+    // console.log(util.inspect(config, {showHidden: false, depth: null, colors: true}))
 
     if (svgSpriteShortcodeList.includes(config.svgSpriteShortcode)) {
       throw new Error("[eleventy-plugin-svg-sprite] illegal to have duplicate svgSpriteShortcode in config list");
