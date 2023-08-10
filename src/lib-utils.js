@@ -15,9 +15,9 @@ async function writeFile(filePath, data) {
     const dirname = path.dirname(filePath);
     const exist = await isExists(dirname);
     if (!exist) {
-      await fs.mkdir(dirname, {recursive: true});
+      await fs.mkdir(dirname, { recursive: true });
     }
-    
+
     await fs.writeFile(filePath, data, 'utf8');
   } catch (err) {
     throw new Error(err);
@@ -26,4 +26,4 @@ async function writeFile(filePath, data) {
 
 module.exports = {
   writeFile
-}
+};

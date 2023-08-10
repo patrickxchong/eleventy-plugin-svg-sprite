@@ -1,5 +1,5 @@
 const fs = require('fs');
-const fsUtils = require('./fs-utils');
+const libUtils = require('./lib-utils');
 const path = require('path');
 const util = require('util');
 const glob = require('glob');
@@ -72,7 +72,7 @@ class SVGSprite {
 
     if (this.outputFilepath) {
       console.info(`[eleventy-plugin-svg-sprite] Writing ${this.config.outputFilepath} from ${this.config.path}`);
-      await fsUtils.writeFile(this.outputFilepath, sprite.contents.toString('utf8'));
+      await libUtils.writeFile(this.outputFilepath, sprite.contents.toString('utf8'));
     }
 
     // cache spriteContent into global spriteCache variable
