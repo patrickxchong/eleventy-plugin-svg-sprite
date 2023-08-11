@@ -1,10 +1,11 @@
+const { glob } = require('glob');
 const fs = require('fs');
-const libUtils = require('./lib-utils');
 const path = require('path');
-const util = require('util');
-const glob = require('glob');
-const Vinyl = require('vinyl');
 const SVGSpriter = require('svg-sprite');
+const util = require('util');
+const Vinyl = require('vinyl');
+
+const libUtils = require('./lib-utils');
 
 let spriteCache = {};
 
@@ -21,8 +22,7 @@ class SVGSprite {
 
   async compile() {
     // Get all SVG files in working directory
-    const getFiles = util.promisify(glob);
-    const files = await getFiles('**/*.svg', { cwd: this.cwd });
+    const files = await glob(`**/*.svg`, { cwd: this.cwd });
     const newCacheKey = files.map(file => `${file}:${fs.statSync(path.join(this.cwd, file)).mtimeMs}`).join("|");
     // Note: Replace custom file watching with chokidar if there are bugs/limitations.
     // https://github.com/paulmillr/chokidar
