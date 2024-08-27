@@ -31,7 +31,7 @@
   "dependencies": {
     "glob": "^10.3.3",
     "lodash": "^4.17.21",
-    "svg-sprite": "2.0.0",
+    "svg-sprite": "2.0.4",
     "vinyl": "^3.0.0"
   }
 }
