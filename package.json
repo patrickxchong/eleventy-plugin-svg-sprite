@@ -29,7 +29,7 @@
     "@11ty/eleventy": ">=0.5.4"
   },
   "dependencies": {
-    "glob": "^10.3.3",
+    "glob": "^11.0.1",
     "lodash": "^4.17.21",
     "svg-sprite": "2.0.4",
     "vinyl": "^3.0.0"
